@@ -13,8 +13,8 @@ on:
     secrets:
       NPM_TOKEN:
         required: true
-    APP_CENTER_TOKEN_ANDROID:
-      required: true
+      APP_CENTER_TOKEN_ANDROID:
+        required: true
 
 jobs:
   build-android:
