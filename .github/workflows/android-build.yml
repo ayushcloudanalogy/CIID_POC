@@ -7,7 +7,7 @@ on:
         required: true
         type: string
       publish:
-        required: false
+        required: true
         type: boolean
         description: Publish to Appcenter
     secrets:
