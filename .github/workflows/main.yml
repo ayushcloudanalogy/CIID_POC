@@ -6,7 +6,7 @@ on:
       - 'main'
 
 jobs:
-  #First job
+  #First job for android
   install-and-test:
     runs-on: ubuntu-latest
 
