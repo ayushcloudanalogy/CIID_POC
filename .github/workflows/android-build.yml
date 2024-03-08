@@ -6,10 +6,10 @@ on:
       environment:
         required: true
         type: string
-    publish:
-      required: false
-      type: boolean
-      description: Publish to Appcenter
+      publish:
+        required: false
+        type: boolean
+        description: Publish to Appcenter
     secrets:
       NPM_TOKEN:
         required: true
