@@ -26,8 +26,8 @@ jobs:
       - name: Unit & Integration tests
         run: yarn test
 
-      - name: Jest coverage report
-        uses: ArtiomTr/jest-coverage-report-action@v2
+      # - name: Jest coverage report
+      #   uses: ArtiomTr/jest-coverage-report-action@v2
 
       
   build-android:
