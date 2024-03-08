@@ -86,6 +86,6 @@ jobs:
           appName: Finder.com/Finder-UK-Android
           token: ${{secrets.APP_CENTER_TOKEN_ANDROID}}
           group: UKInternal
-          file: android/app-release.aab
+          file: android/app/build/outputs/bundle/release/app-release.aab
           notifyTesters: true
           debug: false
