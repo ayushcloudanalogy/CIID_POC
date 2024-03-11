@@ -101,6 +101,6 @@ jobs:
           appName: ayush.jain-cloudanalogy.com/CICD_POC_IOS
           token: ${{secrets.APP_CENTER_TOKEN_IOS}}
           group: Test
-          file: ${{ github.workspace }}/FinderUK.ipa
+          file: FinderUK.ipa
           # notifyTesters: true
           debug: false
