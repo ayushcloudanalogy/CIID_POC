@@ -85,7 +85,7 @@ jobs:
       - name: Upload artifact to App Center
         uses: wzieba/AppCenter-Github-Action@v1
         with:
-          appName: Finder.com/Finder-UK-Android
+          appName: ayush.jain-cloudanalogy.com/CICD_POC_Android
           token: ${{secrets.APP_CENTER_TOKEN_ANDROID}}
           group: UKInternal
           file: app/build/outputs/apk/release/app-release.aab
