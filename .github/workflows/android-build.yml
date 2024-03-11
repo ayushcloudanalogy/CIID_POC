@@ -88,6 +88,6 @@ jobs:
           appName: ayush.jain-cloudanalogy.com/CICD_POC_Android
           token: ${{secrets.APP_CENTER_TOKEN_ANDROID}}
           group: UKInternal
-          file: app/build/outputs/apk/release/app-release.aab
+          file: android/app/build/outputs/bundle/release/app-release.aab
           # notifyTesters: true
           debug: false
