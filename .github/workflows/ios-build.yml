@@ -26,7 +26,7 @@ on:
 
 jobs:
   build-ios:
-    runs-on: macos-14.2.1 #Monterey
+    runs-on: flyci-macos-large-latest-m2 #Monterey
     steps:
       - uses: actions/checkout@v2
 
