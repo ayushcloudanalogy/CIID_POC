@@ -78,7 +78,7 @@ jobs:
           path: 'ios/FinderUK.ipa'
 
   publish-to-appcenter:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     needs: build-ios
     steps:
       - uses: actions/checkout@v3
