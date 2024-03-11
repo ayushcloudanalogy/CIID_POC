@@ -75,7 +75,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: 'FinderUK.ipa'
-          path: 'FinderUK.ipa'
+          path: 'ios/FinderUK.ipa'
 
   publish-to-appcenter:
     runs-on: ubuntu-latest
@@ -96,6 +96,6 @@ jobs:
           appName: ayush.jain-cloudanalogy.com/CICD_POC_IOS
           token: ${{secrets.APP_CENTER_TOKEN_IOS}}
           group: Test
-          file: FinderUK.ipa
+          file: ios/FinderUK.ipa
           # notifyTesters: true
           debug: false
