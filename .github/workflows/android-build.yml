@@ -54,9 +54,9 @@ jobs:
         run: cd android && chmod +x ./gradlew
         # Build Command
 
-      # - name: Build Android ${{inputs.environment == 'release' && 'Release' || 'Debug'}}
-      #   run: |
-      #     cd android && ./gradlew bundle${{inputs.environment == 'release' && 'Release' || 'Debug'}} --no-daemon
+      - name: Build Android ${{inputs.environment == 'release' && 'Release' || 'Debug'}}
+        run: |
+          cd android && ./gradlew bundle${{inputs.environment == 'release' && 'Release' || 'Debug'}} --no-daemon
       # Upload to Artifact
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
@@ -70,10 +70,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # - uses: actions/download-artifact@v3
-      #   with:
-      #     name: FinderUK.aab
-      #     path: 'android/'
+      - uses: actions/download-artifact@v3
+        with:
+          name: FinderUK.aab
+          path: 'android/'
 
       - name: set up JDK 1.8
         uses: actions/setup-java@v1
