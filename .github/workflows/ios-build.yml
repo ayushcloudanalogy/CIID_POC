@@ -94,6 +94,11 @@ jobs:
       #   with:
       #     name: FinderUK.aab
       #     path: ''
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: FinderUK
+          path: ${{ github.workspace }}
 
       - name: Upload artifact to App Center
         uses: wzieba/AppCenter-Github-Action@v1
