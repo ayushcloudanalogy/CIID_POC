@@ -37,7 +37,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install Node modules
-        run: yarn ci
+        run: yarn install
 
       - name: Setup Ruby (bundle)
         uses: ruby/setup-ruby@v1
