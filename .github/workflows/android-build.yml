@@ -62,7 +62,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: FinderUK.aab
-          path: app/build/outputs/apk/release/app-release-unsigned.apk
+          path: android/app/release/app-release.apk
 
   publish-to-appcenter:
     runs-on: ubuntu-latest
@@ -83,6 +83,6 @@ jobs:
           appName: ayush.jain-cloudanalogy.com/CICD_POC_Android
           token: ${{secrets.APP_CENTER_TOKEN_ANDROID}}
           group: UKInternal
-          file: app/build/outputs/apk/release/app-release-unsigned.apk
+          file: android/app/release/app-release.apk
           # notifyTesters: true
           debug: false
