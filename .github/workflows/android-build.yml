@@ -79,8 +79,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: build release
-        run: ./gradlew assembleRelease
+      # - name: build release
+      #   run: ./gradlew assembleRelease
 
       - name: Upload artifact to App Center
         uses: wzieba/AppCenter-Github-Action@v1
