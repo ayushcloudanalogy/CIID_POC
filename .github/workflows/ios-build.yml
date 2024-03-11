@@ -75,7 +75,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: 'FinderUK.ipa'
-          path: 'FinderUK.ipa'
+          path: '${{ github.workspace }}/FinderUK.ipa'
 
   publish-to-appcenter:
     runs-on: macos-latest
