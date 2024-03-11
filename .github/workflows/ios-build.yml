@@ -89,6 +89,10 @@ jobs:
           java-version: 1.8
       # - name: build release
       #   run: ./gradlew assembleRelease
+       - uses: actions/download-artifact@v3
+        with:
+          name: FinderUK.aab
+          path: "ios/"
 
       - name: Upload artifact to App Center
         uses: wzieba/AppCenter-Github-Action@v1
