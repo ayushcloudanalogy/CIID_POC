@@ -94,6 +94,8 @@ jobs:
       #   with:
       #     name: FinderUK.aab
       #     path: ''
+      - name: List Files
+        run: ls -R
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
