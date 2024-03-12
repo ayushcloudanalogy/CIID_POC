@@ -76,6 +76,8 @@ jobs:
         with:
           name: 'FinderUK.ipa'
           path: '${{ github.workspace }}/FinderUK.ipa'
+      - name: List Files
+        run: ls -R
 
   publish-to-appcenter:
     runs-on: ubuntu-latest
