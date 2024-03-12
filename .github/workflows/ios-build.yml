@@ -70,12 +70,13 @@ jobs:
           team-id: ${{ secrets.IOS_TEAM_ID }}
           workspace-path: ios/rncicd_poc.xcworkspace
           output-path: '${{ github.workspace }}/FinderUK.ipa'
+      - run: mkdir -p test
 
       - name: Upload build
         uses: actions/upload-artifact@v3
         with:
           name: 'FinderUK.ipa'
-          path: '${{ github.workspace }}/FinderUK.ipa'
+          path: 'test/FinderUK.ipa'
       - name: List Files
         run: ls -R
 
@@ -102,7 +103,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: FinderUK
-          path: '${{ github.workspace }}/FinderUK.ipa'
+          path: 'test/FinderUK.ipa'
 
       - name: Upload artifact to App Center
         uses: wzieba/AppCenter-Github-Action@v1
@@ -110,6 +111,6 @@ jobs:
           appName: ayush.jain-cloudanalogy.com/CICD_POC_IOS
           token: ${{secrets.APP_CENTER_TOKEN_IOS}}
           group: Test
-          file: '${{ github.workspace }}/FinderUK.ipa'
+          file: 'test/FinderUK.ipa'
           # notifyTesters: true
           debug: false
