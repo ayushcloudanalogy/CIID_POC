@@ -106,6 +106,6 @@ jobs:
           appName: ayush.jain-cloudanalogy.com/CICD_POC_IOS
           token: ${{secrets.APP_CENTER_TOKEN_IOS}}
           group: Test
-          file: android/app/release/release-ipa.ipa
+          file: release-ipa.ipa
           # notifyTesters: true
           debug: false
