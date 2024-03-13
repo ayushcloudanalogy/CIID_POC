@@ -72,11 +72,13 @@ jobs:
           output-path: android/app/release/FinderUK.ipa
       - run: mkdir -p staging
 
-      - name: Upload build
-        uses: actions/upload-artifact@v3
+      - name: collect ipa artifacts
+        uses: actions/upload-artifact@v2
         with:
-          name: 'FinderUK.ipa'
-          path: 'staging/'
+          name: release-ipa
+          # Path to the release files
+          path: build/ios/ipa/*.ipa
+
       - name: List Files
         run: ls -R
 
@@ -92,10 +94,12 @@ jobs:
           java-version: 1.8
       # - name: build release
       #   run: ./gradlew assembleRelease
-      - name: Download artifact
-        uses: actions/actions/download-artifact@v3
+      - uses: actions/checkout@v2
+
+      - name: Get release-ipa from artifacts
+        uses: actions/download-artifact@v2
         with:
-          name: 'FinderUK.aab'
+          name: release-ipa
 
       - name: List Files
         run: ls -R
