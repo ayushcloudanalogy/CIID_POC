@@ -2,7 +2,7 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  *
- * @format
+ * @forma
  */
 
 import React from 'react';
@@ -49,7 +49,7 @@ function Section({children, title}: SectionProps): React.JSX.Element {
             color: isDarkMode ? Colors.light : Colors.dark,
           },
         ]}>
-        {children}
+        {children}Testttt
       </Text>
     </View>
   );
