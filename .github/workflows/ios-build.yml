@@ -70,7 +70,7 @@ jobs:
           team-id: ${{ secrets.IOS_TEAM_ID }}
           workspace-path: ios/rncicd_poc.xcworkspace
           output-path: android/app/release/FinderUK.ipa
-      - run: mkdir -p test
+      - run: mkdir -p staging
 
       - name: Upload build
         uses: actions/upload-artifact@v3
