@@ -3,7 +3,7 @@ name: Pull Request into Master
 on:
   pull_request:
     branches:
-      - 'main'
+      - 'Development'
 
 jobs:
   #First job
