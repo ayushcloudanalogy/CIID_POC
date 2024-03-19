@@ -33,7 +33,7 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         uses: pullreminders/slack-action@master
         with:
-          args: '{\"channel\":\"D06QLTW3525\",\"text\":\"Hello world\"}'
+          args: '{\"channel\":\"D06QLTW3525\",\"text\":\"Android build is about to start\"}'
 
       - name: Use Node.js 20
         uses: actions/setup-node@v3
