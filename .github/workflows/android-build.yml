@@ -69,7 +69,7 @@ jobs:
         uses: adrey/slack-file-upload-action@master
         with:
           token: ${{ secrets.SLACK_BOT_TOKEN }}
-          path: test.txt
+          path: 'android/app/build/outputs/bundle/release/app-release.aab'
           channel: ${{ secrets.SLACK_PR_CHANNEL_ID }}
 
       - name: Upload Artifact
