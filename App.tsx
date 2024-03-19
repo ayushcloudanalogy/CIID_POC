@@ -49,7 +49,7 @@ function Section({children, title}: SectionProps): React.JSX.Element {
             color: isDarkMode ? Colors.light : Colors.dark,
           },
         ]}>
-        {children}
+        {children}Testttt
       </Text>
     </View>
   );

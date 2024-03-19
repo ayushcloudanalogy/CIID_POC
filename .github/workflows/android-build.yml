@@ -6,21 +6,34 @@ on:
       environment:
         required: true
         type: string
-      # publish:
-      #   required: false
-      #   type: boolean
-      #   description: Publish to Appcenter
+      publish:
+        required: false
+        type: boolean
+        description: Publish to Appcenter
     secrets:
       NPM_TOKEN:
         required: true
-      # APP_CENTER_TOKEN_ANDROID:
-      #   required: true
+      APP_CENTER_TOKEN_ANDROID:
+        required: true
 
 jobs:
   build-android:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: 'temurin'
+
+      - name: Notify slack
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: pullreminders/slack-action@master
+        with:
+          args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"text\":\"Android build is about to start\"}'
 
       - name: Use Node.js 20
         uses: actions/setup-node@v3
@@ -46,14 +59,15 @@ jobs:
             ${{ runner.os }}-gradle-caches-
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
-        # Build Command
+        # Build Commands
 
       - name: Build Android ${{inputs.environment == 'release' && 'Release' || 'Debug'}}
         run: |
           cd android && ./gradlew bundle${{inputs.environment == 'release' && 'Release' || 'Debug'}} --no-daemon
       # Upload to Artifact
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+      - name: Upload to APK to slack
+        uses: adrey/slack-file-upload-action@master
         with:
-          name: FinderUK.aab
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
           path: 'android/app/build/outputs/bundle/release/app-release.aab'
+          channel: ${{ secrets.SLACK_PR_CHANNEL_ID }}
