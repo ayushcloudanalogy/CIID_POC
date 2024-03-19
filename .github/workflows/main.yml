@@ -36,9 +36,9 @@ jobs:
       environment: release
     secrets: inherit
 
-  build-ios:
-    needs: install-and-test
-    uses: ./.github/workflows/ios-build.yml
-    with:
-      environment: release
-    secrets: inherit
+  # build-ios:
+  #   needs: install-and-test
+  #   uses: ./.github/workflows/ios-build.yml
+  #   with:
+  #     environment: release
+  #   secrets: inherit
