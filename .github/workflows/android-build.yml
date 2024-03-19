@@ -65,15 +65,9 @@ jobs:
         run: |
           cd android && ./gradlew bundle${{inputs.environment == 'release' && 'Release' || 'Debug'}} --no-daemon
       # Upload to Artifact
-      - name: Upload to slack step
+      - name: Upload to APK to slack
         uses: adrey/slack-file-upload-action@master
         with:
           token: ${{ secrets.SLACK_BOT_TOKEN }}
           path: 'android/app/build/outputs/bundle/release/app-release.aab'
           channel: ${{ secrets.SLACK_PR_CHANNEL_ID }}
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: FinderUK.aab
-          path: 'android/app/build/outputs/bundle/release/app-release.aab'
