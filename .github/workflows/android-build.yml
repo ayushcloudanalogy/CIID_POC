@@ -28,6 +28,14 @@ jobs:
           java-version: 17
           distribution: 'temurin'
 
+      - name: Notify slack
+          env:
+            SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: pullreminders/slack-action@master
+        with:
+          args: '{\"channel\":\"D06QLTW3525\",\"text\":\"Hello world\"}'
+
+
       - name: Use Node.js 20
         uses: actions/setup-node@v3
         with:
