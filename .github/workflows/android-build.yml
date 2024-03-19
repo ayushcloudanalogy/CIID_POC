@@ -64,7 +64,7 @@ jobs:
       - name: Build Android ${{inputs.environment == 'release' && 'Release' || 'Debug'}}
         run: |
           cd android && ./gradlew bundle${{inputs.environment == 'release' && 'Release' || 'Debug'}} --no-daemon
-      # Upload to Artifac
+      # Upload to Artifact
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
