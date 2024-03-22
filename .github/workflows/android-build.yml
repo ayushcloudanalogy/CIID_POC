@@ -41,10 +41,10 @@ jobs:
           node-version: 20
           cache: 'yarn'
 
-      - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: '3.2.3'
+      # - name: Setup Ruby
+      #   uses: actions/setup-ruby@v1
+      #   with:
+      #     ruby-version: '3.2.3'
 
       - name: Install bundler
         run: |
