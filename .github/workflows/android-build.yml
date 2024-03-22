@@ -1,0 +1,79 @@
+name: 'Android Build'
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      publish:
+        required: false
+        type: boolean
+        description: Publish to Appcenter
+    secrets:
+      NPM_TOKEN:
+        required: true
+      APP_CENTER_TOKEN_ANDROID:
+        required: true
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: 'temurin'
+
+      - name: Notify slack
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: pullreminders/slack-action@master
+        with:
+          args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"text\":\"Android build is about to start\"}'
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'yarn'
+
+      - uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Install bundler
+        run: |
+          gem install bundler:2.2.27
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: Generate private-decoded-key.json file
+        run: echo ${{secrets.PRIVATE_SERVICE_ACCOUNT_KEY}} | base64 -d > /home/runner/work/FastlaneSampleProject/FastlaneSampleProject/private-decoded-key.json
+
+      - name: Install Node modules
+        run: yarn install
+
+      - name: Upgrade build version
+        run: bundle exec fastlane getLatestVersionAndUpgrade
+
+      - name: Generate .jks file
+        run: echo ${{secrets.ANDROID_SIGNING_KEY}} | base64 -d > /home/runner/work/FastlaneSampleProject/FastlaneSampleProject/fastlanesample.jks
+
+      - name: Upload Apk to Firebase
+        run: bundle exec fastlane beta
+
+      # Upload to Artifact
+      - name: Upload to APK to slack
+        uses: adrey/slack-file-upload-action@master
+        with:
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          path: 'android/app/build/outputs/bundle/release/app-release.aab'
+          channel: ${{ secrets.SLACK_PR_CHANNEL_ID }}
