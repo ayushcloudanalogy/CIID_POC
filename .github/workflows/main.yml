@@ -6,7 +6,7 @@ on:
       - 'Development'
 
 jobs:
-  #First job
+  #First jo
   install-and-test:
     runs-on: ubuntu-latest
 
