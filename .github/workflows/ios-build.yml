@@ -90,6 +90,9 @@ jobs:
           echo $CERTIFICATE_BASE64 | base64 --decode > signing-cert.p12
           echo "Certificate decoded."
 
+      - name: List Files
+        run: ls -R
+
       - name: Build and Deploy to TestFlight
         env:
           # MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
