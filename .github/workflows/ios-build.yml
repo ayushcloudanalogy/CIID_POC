@@ -47,7 +47,7 @@ jobs:
 
       - name: Bundle install for iOS Gemfile
         timeout-minutes: 5
-        run: cd ./ios && bundle install
+        run: cd ./ios && gem install bundler:2.5.4 && bundle install
       # - name: Restore Pods cache
       #   uses: actions/cache@v3
       #   with:
