@@ -81,6 +81,9 @@ jobs:
           ASC_KEY_ID: ${{ secrets.APPLE_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.APPLE_ISSUER_ID }}
           ASC_KEY_P8: ${{ secrets.APPLE_KEY_CONTENT }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
+          SIGNING_KEY_FILE_PATH: ${{ secrets.P12_BASE64 }}
+
         run: |
           cd ./ios
           bundle exec fastlane beta
