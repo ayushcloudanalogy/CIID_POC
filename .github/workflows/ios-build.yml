@@ -84,7 +84,7 @@ jobs:
 
       - name: Decode signing certificate into a file
         env:
-          CERTIFICATE_BASE64: ${{ secrets.P12_BASE64 }}
+          CERTIFICATE_BASE64: ${{ secrets.MOBILEPROVISION_BASE64 }}
         run: |
           echo $CERTIFICATE_BASE64 | base64 --decode > signing-cert.p12
 
