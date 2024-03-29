@@ -18,10 +18,10 @@
 default_platform(:ios)
 
 platform :ios do
-  before_all do
-    FASTLANE_USER = "ios@cloudanalogy.com"
-    FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD = "wtyr-ydsj-sjlf-gpsb"
-  end
+  # before_all do
+  #   FASTLANE_USER = "ios@cloudanalogy.com"
+  #   FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD = "wtyr-ydsj-sjlf-gpsb"
+  # end
 
   desc "Push a new beta build to TestFlight"
   lane :beta do
