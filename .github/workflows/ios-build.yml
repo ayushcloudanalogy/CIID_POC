@@ -86,7 +86,7 @@ jobs:
 
         run: |
           cd ./ios
-          bundle exec fastlane beta
+          bundle exec fastlane build_upload_testflight
 
       # - run: mkdir -p staging
 
