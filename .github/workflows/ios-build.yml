@@ -44,8 +44,8 @@ jobs:
         with:
           ruby-version: 2.6
           bundler-cache: true
-          
-       - name: Bundle install for iOS Gemfile
+
+      - name: Bundle install for iOS Gemfile
         timeout-minutes: 5
         run: cd ./ios && bundle install
       # - name: Restore Pods cache
