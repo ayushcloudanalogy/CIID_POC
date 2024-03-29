@@ -27,6 +27,12 @@ on:
 jobs:
   build-ios:
     runs-on: macos-latest #Monterey
+
+    env:
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      ASC_KEY: ${{ secrets.ASC_KEY }}
+
     steps:
       - uses: actions/checkout@v2
 
@@ -35,11 +41,6 @@ jobs:
         with:
           node-version: 20
           cache: 'yarn'
-
-      env:
-        ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
-        ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
-        ASC_KEY: ${{ secrets.ASC_KEY }}
 
       - name: Install Node modules
         run: yarn install
