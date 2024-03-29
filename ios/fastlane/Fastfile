@@ -25,9 +25,14 @@ platform :ios do
   desc "Load ASC API Key information to use in subsequent lanes"
   lane :load_asc_api_key do
     app_store_connect_api_key(
-      key_id: ENV["ASC_KEY_ID"],
-      issuer_id: ENV["ASC_ISSUER_ID"],
-      key_content: ENV["ASC_KEY"],
+      key_id: "RDVZ8RA672",
+      issuer_id: "6eb6984b-68b1-4784-9e5c-61bb1fb26c6b",
+      key_content: "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JR1RBZ0VBTUJNR0J5cUdTTTQ5
+      QWdFR0NDcUdTTTQ5QXdFSEJIa3dkd0lCQVFRZ0Uzc1VXK3huYXRKOEhCZjMKZ1ht
+      RXFSZ2FXZUJoZGgrcm9NQ3oveWVoQ3J1Z0NnWUlLb1pJemowREFRZWhSQU5DQUFU
+      a0IwMXlISHp1bG5GTgo3VytIZEZDWmVXc0hFeS9OL2Y4cThqdjZESC9CVUZlTDhB
+      czM4OFdFb3NQYk5YSlJnZWVjcTJFVDBXaHlzNzY2Ckx2ZjNqZUtHCi0tLS0tRU5E
+      IFBSSVZBVEUgS0VZLS0tLS0=",
       is_key_content_base64: true,
       in_house: false # detecting this via ASC private key not currently supported
     )
@@ -41,7 +46,7 @@ platform :ios do
      build_release
      upload_release
    end
-   
+
   desc "Push a new beta build to TestFlight"
   lane :beta do
     # slack(message: "Build started")
