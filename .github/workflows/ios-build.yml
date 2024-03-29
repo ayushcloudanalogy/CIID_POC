@@ -70,42 +70,54 @@ jobs:
           team-id: ${{ secrets.IOS_TEAM_ID }}
           workspace-path: ios/rncicd_poc.xcworkspace
           output-path: android/app/release/release-ipa.ipa
-      - run: mkdir -p staging
 
-      - name: collect ipa artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: release-ipa
-          # Path to the release files
-          path: android/app/release/*.ipa
+      - name: Build and Deploy to TestFlight
+        env:
+          # MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          # MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.GIT_PAT_TOKEN }}
+          ASC_KEY_ID: ${{ secrets.APPLE_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.APPLE_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.APPLE_KEY_CONTENT }}
+        run: |
+          cd ./ios
+          bundle exec fastlane beta
 
-      - name: List Files
-        run: ls -R
+      # - run: mkdir -p staging
 
-  publish-to-appcenter:
-    runs-on: ubuntu-latest
-    needs: build-ios
-    steps:
-      - uses: actions/checkout@v2
-      - name: Get release-ipa from artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: release-ipa
-
-      - name: List Files
-        run: ls -R
-      # - name: Download artifact
-      #   uses: actions/download-artifact@v3
+      # - name: collect ipa artifacts
+      #   uses: actions/upload-artifact@v2
       #   with:
-      #     name: FinderUK
-      #     path: 'test/FinderUK.ipa'
+      #     name: release-ipa
+      #     # Path to the release files
+      #     path: android/app/release/*.ipa
 
-      - name: Upload artifact to App Center
-        uses: wzieba/AppCenter-Github-Action@v1
-        with:
-          appName: ayush.jain-cloudanalogy.com/CICD_POC_IOS
-          token: ${{secrets.APP_CENTER_TOKEN_IOS}}
-          group: Test
-          file: release-ipa.ipa
-          # notifyTesters: true
-          debug: false
+      # - name: List Files
+      #   run: ls -R
+
+  # publish-to-appcenter:
+  #   runs-on: ubuntu-latest
+  #   needs: build-ios
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Get release-ipa from artifacts
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: release-ipa
+
+  #     - name: List Files
+  #       run: ls -R
+  #     # - name: Download artifact
+  #     #   uses: actions/download-artifact@v3
+  #     #   with:
+  #     #     name: FinderUK
+  #     #     path: 'test/FinderUK.ipa'
+
+  #     - name: Upload artifact to App Center
+  #       uses: wzieba/AppCenter-Github-Action@v1
+  #       with:
+  #         appName: ayush.jain-cloudanalogy.com/CICD_POC_IOS
+  #         token: ${{secrets.APP_CENTER_TOKEN_IOS}}
+  #         group: Test
+  #         file: release-ipa.ipa
+  #         # notifyTesters: true
+  #         debug: false
