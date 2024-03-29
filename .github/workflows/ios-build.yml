@@ -79,6 +79,8 @@ jobs:
       #     team-id: ${{ secrets.IOS_TEAM_ID }}
       #     workspace-path: ios/rncicd_poc.xcworkspace
       #     output-path: android/app/release/release-ipa.ipa
+      - name: Install Fastlane
+        run: gem install fastlane -NV
 
       - name: Build and Deploy to TestFlight
         env:
