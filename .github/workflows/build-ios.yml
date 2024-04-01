@@ -52,8 +52,7 @@ jobs:
       - name: Install pod dependencies
         run: cd ios && pod install && cd .
 
-     - name: Build and Deploy to TestFlight
-       
+      - name: Build and Deploy to TestFlight
         run: |
           cd ./ios
           bundle exec fastlane build
