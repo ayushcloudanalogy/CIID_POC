@@ -43,14 +43,14 @@ jobs:
       environment: release
     secrets: inherit
 
-
-
+---
 name: Merge into development branch
 
 on:
   push:
     branches:
       - Development
+
 jobs:
   # build-android:
   #   needs: install-and-test
