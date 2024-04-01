@@ -130,7 +130,8 @@ platform :ios do
       force: true, 
       submit_for_review: true,
       automatic_release: true,
-      skip_binary_upload: true
+      skip_binary_upload: true,
+      run_precheck_before_submit: false,
     )
    
   end
