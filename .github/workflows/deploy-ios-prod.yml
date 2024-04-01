@@ -76,4 +76,4 @@ jobs:
 
         run: |
           cd ./ios
-          bundle exec fastlane build_upload_testflight
+          bundle exec fastlane build_upload_appstore
