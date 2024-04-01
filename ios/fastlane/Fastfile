@@ -135,6 +135,12 @@ platform :ios do
     # slack(message: "Successfully distributed a new beta build")
   end
 
+  desc "Build the app"
+  lane :build do
+   build_app(workspace: "rncicd_poc.xcworkspace", scheme: "rncicd_poc")
+    
+  end
+
   lane :release do
   
     sync_code_signing(type: "appstore") 

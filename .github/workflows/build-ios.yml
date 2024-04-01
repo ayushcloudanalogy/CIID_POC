@@ -52,14 +52,8 @@ jobs:
       - name: Install pod dependencies
         run: cd ios && pod install && cd .
 
-      - name: Build iOS (Release)
-        uses: yukiarrr/ios-build-action@v1.5.0
-        with:
-          project-path: ios/rncicd_poc.xcodeproj
-          p12-base64: ${{ secrets.P12_BASE64 }}
-          mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
-          code-signing-identity: 'Apple Distribution'
-          certificate-password: ${{ secrets.CERTIFICATE_PASSWORD }}
-          team-id: ${{ secrets.IOS_TEAM_ID }}
-          workspace-path: ios/rncicd_poc.xcworkspace
-          output-path: android/app/release/release-ipa.ipa
+     - name: Build and Deploy to TestFlight
+       
+        run: |
+          cd ./ios
+          bundle exec fastlane build
