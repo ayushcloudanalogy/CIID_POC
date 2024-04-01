@@ -20,7 +20,7 @@ jobs:
   #   secrets: inherit
 
   build-ios:
-    uses: ./.github/workflows/build-ios.yml
+    uses: ./.github/workflows/deply-ios-testflight.yml
     with:
       environment: release
     secrets: inherit
