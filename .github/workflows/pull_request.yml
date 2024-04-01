@@ -42,26 +42,3 @@ jobs:
     with:
       environment: release
     secrets: inherit
-
----
-name: Merge into development branch
-
-on:
-  push:
-    branches:
-      - Development
-
-jobs:
-  # build-android:
-  #   needs: install-and-test
-  #   uses: ./.github/workflows/android-build.yml
-  #   with:
-  #     environment: release
-  #   secrets: inherit
-
-  build-ios:
-    needs: install-and-test
-    uses: ./.github/workflows/build-ios.yml
-    with:
-      environment: release
-    secrets: inherit
