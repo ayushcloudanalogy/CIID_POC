@@ -67,10 +67,13 @@ platform :ios do
 
    # fetches and installs provisioning profiles from ASC
     sigh(
-     adhoc: true,
+    #  adhoc: true,
       api_key: api_key,
       readonly: true, 
-      provisioning_name:"CICD_DEMO_App"
+      # provisioning_name:"CICD_DEMO_APPSTORE",
+      app_identifier:"com.reactjs.native.example.AppMySiteDemo",
+      provisioning_name:"CICD_DEMO_APPSTORE",
+
     )
 
    
