@@ -27,7 +27,12 @@ platform :ios do
     app_store_connect_api_key(
       key_id: ENV["ASC_KEY_ID"],
       issuer_id: ENV["ASC_ISSUER_ID"],
-      key_content: ENV["ASC_KEY_P8"],
+      key_content: "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JR1RBZ0VBTUJNR0J5cUdTTTQ5
+      QWdFR0NDcUdTTTQ5QXdFSEJIa3dkd0lCQVFRZ0Uzc1VXK3huYXRKOEhCZjMKZ1ht
+      RXFSZ2FXZUJoZGgrcm9NQ3oveWVoQ3J1Z0NnWUlLb1pJemowREFRZWhSQU5DQUFU
+      a0IwMXlISHp1bG5GTgo3VytIZEZDWmVXc0hFeS9OL2Y4cThqdjZESC9CVUZlTDhB
+      czM4OFdFb3NQYk5YSlJnZWVjcTJFVDBXaHlzNzY2Ckx2ZjNqZUtHCi0tLS0tRU5E
+      IFBSSVZBVEUgS0VZLS0tLS0=",
       is_key_content_base64: true,
       in_house: false # detecting this via ASC private key not currently supported
     )
@@ -62,11 +67,14 @@ platform :ios do
 
    # fetches and installs provisioning profiles from ASC
     sigh(
-      adhoc: true,
+     adhoc: true,
       api_key: api_key,
       readonly: true,
-      provisioning_name:"CICDDemo"
+     
+      
     )
+
+   
   end
 
   desc "Build and upload to TestFlight"
