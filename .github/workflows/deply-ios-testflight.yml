@@ -1,0 +1,79 @@
+name: 'iOS Build'
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      publish:
+        required: false
+        type: boolean
+        description: Publish to Appcenter
+    secrets:
+      P12_BASE64:
+        required: true
+      MOBILEPROVISION_BASE64:
+        required: true
+      IOS_TEAM_ID:
+        required: true
+      CERTIFICATE_PASSWORD:
+        required: true
+      NPM_TOKEN:
+        required: true
+      APP_CENTER_TOKEN_IOS:
+        required: true
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'yarn'
+
+      - name: Install Node modules
+        run: yarn install
+
+      - name: Setup Ruby (bundle)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+          bundler-cache: true
+
+      - name: Bundle install for iOS Gemfile
+        timeout-minutes: 5
+        run: cd ./ios && bundle install
+
+      - name: Install pod dependencies
+        run: cd ios && pod install && cd .
+
+      - name: Decode signing certificate into a file
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.P12_CER_DIS_NEW }}
+        run: |
+          echo "Decoding certificate..."
+          echo $CERTIFICATE_BASE64 | base64 --decode > ${{ github.workspace }}/signing-cert.p12
+          echo "Certificate decoded."
+
+      - name: List Files
+        run: ls -R
+
+      - name: Build and Deploy to TestFlight
+        env:
+          # MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          # MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.GIT_PAT_TOKEN }}
+          ASC_KEY_ID: ${{ secrets.APPLE_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.APPLE_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.APPLE_KEY_CONTENT }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.P12_CER_DIS_NEW_PASSWORD }}
+          SIGNING_KEY_FILE_PATH: ${{ github.workspace }}/signing-cert.p12
+
+        run: |
+          cd ./ios
+          bundle exec fastlane build_upload_testflight

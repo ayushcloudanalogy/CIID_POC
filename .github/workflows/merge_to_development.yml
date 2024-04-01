@@ -1,0 +1,26 @@
+name: Merge into development branch
+
+on:
+  push:
+    branches:
+      - Development
+
+jobs:
+  dummy-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Initilize job
+        run: echo "Initilize job"
+
+  # build-android:
+  #   needs: install-and-test
+  #   uses: ./.github/workflows/android-build.yml
+  #   with:
+  #     environment: release
+  #   secrets: inherit
+
+  build-ios:
+    uses: ./.github/workflows/deply-ios-testflight.yml
+    with:
+      environment: release
+    secrets: inherit
