@@ -52,6 +52,14 @@ jobs:
       - name: Install pod dependencies
         run: cd ios && pod install && cd .
 
+      - name: Decode signing certificate into a file
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.P12_CER_DIS_NEW }}
+        run: |
+          echo "Decoding certificate..."
+          echo $CERTIFICATE_BASE64 | base64 --decode > ${{ github.workspace }}/signing-cert.p12
+          echo "Certificate decoded."
+
       - name: Build
         env:
           ASC_KEY_ID: ${{ secrets.APPLE_KEY_ID }}
