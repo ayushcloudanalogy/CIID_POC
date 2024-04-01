@@ -137,7 +137,9 @@ platform :ios do
 
   desc "Build the app"
   lane :build do
-   build_app(workspace: "rncicd_poc.xcworkspace", scheme: "rncicd_poc")
+    load_asc_api_key
+    prepare_signing
+    build_app(workspace: "rncicd_poc.xcworkspace", scheme: "rncicd_poc",clean: true)
     
   end
 

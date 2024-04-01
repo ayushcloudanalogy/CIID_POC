@@ -52,7 +52,21 @@ jobs:
       - name: Install pod dependencies
         run: cd ios && pod install && cd .
 
-      - name: Build and Deploy to TestFlight
+      - name: Decode signing certificate into a file
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.P12_CER_DIS_NEW }}
+        run: |
+          echo "Decoding certificate..."
+          echo $CERTIFICATE_BASE64 | base64 --decode > ${{ github.workspace }}/signing-cert.p12
+          echo "Certificate decoded."
+
+      - name: Build
+        env:
+          ASC_KEY_ID: ${{ secrets.APPLE_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.APPLE_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.APPLE_KEY_CONTENT }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.P12_CER_DIS_NEW_PASSWORD }}
+          SIGNING_KEY_FILE_PATH: ${{ github.workspace }}/signing-cert.p12
         run: |
           cd ./ios
           bundle exec fastlane build
