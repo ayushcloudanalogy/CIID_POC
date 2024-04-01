@@ -103,7 +103,7 @@ desc "Build the iOS app for release"
 lane :build_release do |options|
  app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
 
- profile_name = "CICD_DEMO_APPSTORE" # replace with the name of the profile to use for the build
+ profile_name = "CICD_DEMO_App" # replace with the name of the profile to use for the build
  output_name = "example-iOS" # specify the name of the .ipa file to generate
  export_method = "app-store" # specify the export method
 
@@ -150,8 +150,8 @@ end
      load_asc_api_key
      prepare_signing
      fetch_and_increment_build_number
-     build_release
-     upload_release
+    #  build_release
+    #  upload_release
     # setup_ci
     # sync_code_signing(
     #   type: "appstore",
