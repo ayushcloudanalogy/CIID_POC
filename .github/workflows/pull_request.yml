@@ -1,0 +1,34 @@
+name: Pull Request into Master
+
+on:
+  pull_request:
+    branches:
+      - 'Development'
+      - 'main'
+
+jobs:
+  install-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'yarn'
+
+      - name: Install Node modules
+        run: yarn install
+
+      - name: Unit & Integration tests
+        run: yarn test
+
+  build-ios:
+    needs: install-and-test
+    uses: ./.github/workflows/build-ios.yml
+    with:
+      environment: release
+    secrets: inherit
