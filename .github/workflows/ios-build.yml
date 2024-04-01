@@ -84,7 +84,7 @@ jobs:
 
       - name: Decode signing certificate into a file
         env:
-          CERTIFICATE_BASE64: ${{ secrets.MOBILEPROVISION_BASE64 }}
+          CERTIFICATE_BASE64: ${{ secrets.P12_CER_DIS_NEW }}
         run: |
           echo "Decoding certificate..."
           echo $CERTIFICATE_BASE64 | base64 --decode > ${{ github.workspace }}/signing-cert.p12
@@ -100,7 +100,7 @@ jobs:
           ASC_KEY_ID: ${{ secrets.APPLE_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.APPLE_ISSUER_ID }}
           ASC_KEY_P8: ${{ secrets.APPLE_KEY_CONTENT }}
-          SIGNING_KEY_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.P12_CER_DIS_NEW_PASSWORD }}
           SIGNING_KEY_FILE_PATH: ${{ github.workspace }}/signing-cert.p12
 
         run: |
