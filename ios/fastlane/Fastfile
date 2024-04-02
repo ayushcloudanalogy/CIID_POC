@@ -182,7 +182,7 @@ platform :ios do
     slack(
         message: "Some thing goes wrong",
         success: false,
-        slack_url: "https://hooks.slack.com/services/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",
+        slack_url: "https://hooks.slack.com/services/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",
         attachment_properties: {
             fields: [
                 {
