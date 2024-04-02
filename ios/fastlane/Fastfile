@@ -183,6 +183,8 @@ platform :ios do
         message: "Some thing goes wrong",
         success: false,
         slack_url: ENV["SLACK_WEB_HOOK_URL"],
+        default_payloads: [:git_branch, :last_git_commit_message]
+
         # attachment_properties: {
         #     fields: [
         #         {
