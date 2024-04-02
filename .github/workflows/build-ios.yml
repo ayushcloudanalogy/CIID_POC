@@ -67,6 +67,7 @@ jobs:
           ASC_KEY_P8: ${{ secrets.APPLE_KEY_CONTENT }}
           SIGNING_KEY_PASSWORD: ${{ secrets.P12_CER_DIS_NEW_PASSWORD }}
           SIGNING_KEY_FILE_PATH: ${{ github.workspace }}/signing-cert.p12
+          SLACK_WEB_HOOK_URL: ${{ SLACK_WEB_HOOK_URL }}
         run: |
           cd ./ios
           bundle exec fastlane build
