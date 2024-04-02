@@ -1,4 +1,4 @@
-name: Pull Request into Maste
+name: Pull Request into Master
 
 on:
   pull_request:
