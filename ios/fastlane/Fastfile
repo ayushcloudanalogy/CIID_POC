@@ -161,14 +161,42 @@ platform :ios do
     upload_to_testflight
     # slack(message: "Successfully distributed a new beta build")
   end
-
+ 
   desc "Build the app"
   lane :build do
+    begin
+         build_a_app()
+    rescue => exception 
+         on_error(exception)
+    end
+  end
+   ### Method for build app
+  def build_a_app
     load_asc_api_key
     prepare_signing
-    build_app(workspace: "rncicd_poc.xcworkspace", scheme: "rncicd_poc",clean: true)
-    
+    build_app(workspace: "rncicd_poc.xcworkspace", scheme: "rncicd_po",clean: true)
   end
+
+  def on_error(exception)
+    slack(
+        message: "Some thing goes wrong",
+        success: false,
+        slack_url: "https://hooks.slack.com/services/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",
+        attachment_properties: {
+            fields: [
+                {
+                    title: "Build number",
+                    value: ENV["BUILD_NUMBER"],
+                },
+                {
+                    title: "Error message",
+                    value: exception.to_s,
+                    short: false
+                }
+            ]
+        }
+    )
+ end
 
   lane :release do
   
