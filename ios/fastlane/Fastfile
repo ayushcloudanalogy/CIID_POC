@@ -167,17 +167,18 @@ platform :ios do
     begin
          build_a_app()
     rescue => exception 
-         on_error(exception)
+         on_error()
     end
   end
    ### Method for build app
   def build_a_app
+    on_error()
     load_asc_api_key
     prepare_signing
     build_app(workspace: "rncicd_poc.xcworkspace", scheme: "rncicd_po",clean: true)
   end
 
-  def on_error(exception)
+  def on_error()
     slack(
         message: "Some thing goes wrong",
         success: false,
@@ -190,7 +191,7 @@ platform :ios do
                 },
                 {
                     title: "Error message",
-                    value: exception.to_s,
+                    value: "",
                     short: false
                 }
             ]
